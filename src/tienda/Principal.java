@@ -25,9 +25,9 @@ public class Principal {
             System.out.println("2) Mostrar información registrada");
             System.out.println("3) Ordenar información registrada");
             System.out.println("4) Modificar información");
-            System.out.println("5) SIN DEFINIR Peliculas Ascendente");
-            System.out.println("6) SIN DEFINIR peliculas descendente");
-            System.out.println("7) SIN DEFINIR  Peliculas");
+            System.out.println("5) SIN DEFINIR");
+            System.out.println("6) SIN DEFINIR");
+            System.out.println("7) SIN DEFINIR");
             System.out.println("-1) Salir");
             System.out.println("\n");
             menu = IngresoDatos.getEntero("una opción", true);
@@ -36,7 +36,7 @@ public class Principal {
                 case 1 -> {menuIngreso();}
                 case 2 -> {menuMostrarInfo();}
                 case 3 -> {menuOrdenar();}
-                case 4 -> {tablaClientes.ordenarPorNombre(false);}
+                case 4 -> {menuModificar();}
                 case 5 -> {tablaPelis.ordenPeliNombre(true); tablaPelis.mostrarPelis();}
                 case 6 -> {tablaPelis.ordenPeliNombre(false); tablaPelis.mostrarPelis();}
                 case 7 -> {tablaPelis.agregarPeli();}
@@ -89,6 +89,22 @@ public class Principal {
             switch (opcion) {
                 case 1 -> {menuOpcionOrden(false);}
                 case 2 -> {menuOpcionOrden(true);;}
+                case 3 -> {salir = true;}
+                default -> {System.out.println(noExisteOpcion);}
+            }
+        }
+    }
+
+    public void menuModificar(){
+        int opcion;
+        boolean salir = false;
+        while (!salir) {
+            System.out.println("\n------------MODIFICACION DE INFORMACION-----------\n");
+            System.out.println(peliCliente);
+            opcion = IngresoDatos.getEntero("una opción", false);
+            switch (opcion) {
+                case 1 -> {tablaClientes.modificarCliente();}
+                case 2 -> {tablaPelis.modificarPeli();}
                 case 3 -> {salir = true;}
                 default -> {System.out.println(noExisteOpcion);}
             }

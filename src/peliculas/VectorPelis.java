@@ -79,7 +79,6 @@ public class VectorPelis {
         peliculas[indice].setNombre(nuevoNombre);
         peliculas[indice].setAnio(nuevoAnio);
         peliculas[indice].setCategoria(categorias[indiceCategoria]);
-
     }
 
     public void modificarCategoria(String nuevaCategoria){
