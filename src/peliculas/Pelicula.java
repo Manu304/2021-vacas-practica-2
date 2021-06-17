@@ -2,6 +2,7 @@ package src.peliculas;
 
 import src.categorias.Categoria;
 import src.manejo_datos.ManejadorData;
+import src.tienda.IngresoDatos;
 
 public class Pelicula {
     int id, anio, contador;
@@ -9,8 +10,8 @@ public class Pelicula {
     boolean disponible;
     Categoria categoria;
 
-    public Pelicula(int id, int anio, String nombre, Categoria categoria) {
-        this.id = id;
+    public Pelicula(int anio, String nombre, Categoria categoria) {
+        this.id = generarID();
         this.anio = anio;
         this.contador = 0;
         this.nombre = nombre;
@@ -18,8 +19,14 @@ public class Pelicula {
         this.categoria = categoria;
     }
 
-    public Pelicula(int id, String nombre) {
-        this(id, 0, nombre, new Categoria());
+
+
+    public Pelicula(String nombre) {
+        this(0, nombre, new Categoria());
+    }
+
+    private int generarID() {
+        return IngresoDatos.aleatorio(1000, 9999);
     }
 
     public String getInformacion(boolean contador) {

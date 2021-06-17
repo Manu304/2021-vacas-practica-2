@@ -25,9 +25,6 @@ public class Principal {
             System.out.println("2) Mostrar información registrada");
             System.out.println("3) Ordenar información registrada");
             System.out.println("4) Modificar información");
-            System.out.println("5) SIN DEFINIR");
-            System.out.println("6) SIN DEFINIR");
-            System.out.println("7) SIN DEFINIR");
             System.out.println("-1) Salir");
             System.out.println("\n");
             menu = IngresoDatos.getEntero("una opción", true);
@@ -37,9 +34,6 @@ public class Principal {
                 case 2 -> {menuMostrarInfo();}
                 case 3 -> {menuOrdenar();}
                 case 4 -> {menuModificar();}
-                case 5 -> {tablaPelis.ordenPeliNombre(true); tablaPelis.mostrarPelis();}
-                case 6 -> {tablaPelis.ordenPeliNombre(false); tablaPelis.mostrarPelis();}
-                case 7 -> {tablaPelis.agregarPeli();}
                 case -1 -> {salir = true; System.out.println("\nVuelva pronto :)\n");}
                 default -> {System.out.println(noExisteOpcion);}
                     

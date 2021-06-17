@@ -21,7 +21,7 @@ public class VectorPelis {
         if (indicePeli > CANTIDAD) {
             System.out.println("\nLímite de peliculas alcanzado!");
         } else {
-            peliculas[indicePeli - 1] = new Pelicula(indicePeli, anio, nombre, categoria);
+            peliculas[indicePeli - 1] = new Pelicula(anio, nombre, categoria);
 
         }
         indicePeli++;

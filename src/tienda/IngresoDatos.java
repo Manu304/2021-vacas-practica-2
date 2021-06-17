@@ -34,4 +34,9 @@ public class IngresoDatos {
         String res = scanner.nextLine().toLowerCase().trim();
         return res;
     }
+
+    public static int aleatorio(int minimo, int maximo) {
+        int aleatorio = (int) Math.floor(Math.random() * (maximo - minimo + 1) + minimo);
+        return aleatorio;
+    }
 }

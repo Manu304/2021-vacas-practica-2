@@ -1,6 +1,7 @@
 package src.clientes;
 
 import src.manejo_datos.ManejadorData;
+import src.tienda.IngresoDatos;
 
 /**
  * Cliente
@@ -10,20 +11,24 @@ public class Cliente {
     private String nombre;
     private int telefono;
 
-    public Cliente(int id, String nombre, int telefono) {
-        this.id = id;
+    public Cliente(String nombre, int telefono) {
+        this.id = generarID();
         this.nombre = nombre;
         this.telefono = telefono;
     }
 
-    public Cliente(int id, String nombre) {
-        this(id, nombre, 0);
+    public Cliente(String nombre) {
+        this(nombre, 0);
     }
 
     // getters y setters
 
     public int getId() {
         return id;
+    }
+
+    private int generarID() {
+        return IngresoDatos.aleatorio(1000, 9999);
     }
 
     public int getTelefono() {
