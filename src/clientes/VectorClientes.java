@@ -56,7 +56,34 @@ public class VectorClientes {
                 System.out.println("ERROR. Ese cliente no se encuentra entre las opciones");
             }
         } while (selec > siguienteCodigo);
-        modificarCliente(selec);
+        modificarCliente(selec-1);
+    }
+
+    public void ordenClienteID(boolean ascendente){
+        boolean cambio = true;
+        Cliente selec = null;
+        int pos = 0;
+
+        for (int i = 0; i < siguienteCodigo; i++) {
+            selec = clientes[i];
+            pos = i;
+
+            for (int j = i+1; j < siguienteCodigo; j++) {
+                
+                if (ascendente) {
+                    cambio = selec.getId() > clientes[j].getId();
+                    
+                }else{
+                    cambio = selec.getId() < clientes[j].getId();
+                }
+                if (cambio){
+                    selec = clientes[j];
+                    pos = j;
+                }
+            }
+            clientes[pos] = clientes[i];
+            clientes[i] = selec;
+        }
     }
 
     public void modificarCliente(int indice){

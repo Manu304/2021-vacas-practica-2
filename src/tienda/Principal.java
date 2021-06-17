@@ -125,22 +125,45 @@ public class Principal {
             opcion = IngresoDatos.getEntero("una opción", false);
             switch (opcion) {
                 case 1 -> {
+                    System.out.println("\n-----------ORDEN ASCENDENTE (A-Z)------------\n");
                     if (esPeli) {
                         tablaPelis.ordenPeliNombre(true);
+                        tablaPelis.mostrarPelis();
                     } else {
                         tablaClientes.ordenarPorNombre(true);
+                        tablaClientes.mostrarClientes();
                     }
-                    System.out.println("\n-----------ORDEN ASCENDENTE (A-Z)------------\n");
-                    tablaClientes.mostrarClientes();
                 }
                 case 2 -> {
+                    System.out.println("\n----------ORDEN DESCENDENTE (Z-A)------------\n");
                     if (esPeli) {
                         tablaPelis.ordenPeliNombre(false);
+                        tablaPelis.mostrarPelis();
                     } else {
                         tablaClientes.ordenarPorNombre(false);
+                        tablaClientes.mostrarClientes();
                     }
-                    System.out.println("\n----------ORDEN DESCENDENTE (Z-A)------------\n");
-                    tablaClientes.mostrarClientes();
+                }
+                case 3 -> {
+                    System.out.println("\n-----------ORDEN ASCENDENTE (1-N)------------\n");
+                    if (esPeli) {
+                        tablaPelis.ordenPeliID(true);
+                        tablaPelis.mostrarPelis();
+                    }else{
+                        tablaClientes.ordenClienteID(true);
+                        tablaClientes.mostrarClientes();
+                    }
+                    
+                }
+                case 4 -> {
+                    System.out.println("\n-----------ORDEN DESCENDENTE (N-1)------------\n");
+                    if (esPeli) {
+                        tablaPelis.ordenPeliID(false);
+                        tablaPelis.mostrarPelis();
+                    }else{
+                        tablaClientes.ordenClienteID(false);
+                        tablaClientes.mostrarClientes();
+                    }
                 }
                 case 5 -> {salir = true;}
                 default -> {System.out.println(noExisteOpcion);}
