@@ -16,7 +16,7 @@ public class VectorClientes {
         if (siguienteCodigo > 50) {
             System.out.println("\nLímite de clientes alcanzado!\n");
         } else {
-            clientes[(siguienteCodigo - 1)] = new Cliente(siguienteCodigo, nombre, telefono);
+            clientes[(siguienteCodigo - 1)] = new Cliente(nombre, telefono);
         }
         siguienteCodigo++;
     }
