@@ -28,6 +28,7 @@ public class VectorPelis {
     }
 
     public void agregarPeli() {
+        System.out.println("\n-----------INGRENSANDO NUEVA PELICULA----------\n");
         String nombre = IngresoDatos.getTexto("el nombre de la pelicula");
         int anio = IngresoDatos.getEntero("el año de estreno de la pelicula", false);
         String nombreCategoria = IngresoDatos.getTexto("la categoria de la pelicula");
