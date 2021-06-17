@@ -13,41 +13,29 @@ public class Principal {
     public Principal(){
 
         int menu = 0;
+        boolean salir = false;
 
-        while(menu >= 0){
-            System.out.println("Bienvenido a memorabilia \n\n");
+        while(!salir){
+            System.out.println("\nBienvenido a Memorabilia \n");
             System.out.println("1) Ingreso de clientes");
             System.out.println("2) Mostrar clientes");
             System.out.println("3) Ordenar Clientes Ascente");
             System.out.println("4) Ordenar Clientes Descendente");
             System.out.println("-1) Salir");
             System.out.println("\n");
-            menu = IngresoDatos.getEntero("Ingrese la opción ", true);
+            menu = IngresoDatos.getEntero("Ingrese la opción", true);
 
-            if (menu == 1 ){
-                //ingreso de datos
-                tablaClientes.agregarCliente();
+            switch (menu) {
+                case 1 -> {tablaClientes.agregarCliente();}
+                case 2 -> {tablaClientes.mostrarClientes();}
+                case 3 -> {tablaClientes.ordenarPorNombre(true);}
+                case 4 -> {tablaClientes.ordenarPorNombre(false);}
+                case -1 -> {salir = true; System.out.println("\nVuelva pronto :)\n");}
+                default -> {System.out.println("\nUps, esa opción no existe :c\n");}
+                    
             }
-            if (menu == 2){
-                //mostrar clientes
-                tablaClientes.mostrarClientes();
-            }
-            if (menu == 3){
-                //mostrar clientes
-                System.out.println("Desordenado:");
-                tablaClientes.mostrarClientes();
-                System.out.println("\n\nOrdenado:");
-                tablaClientes.ordenarPorNombre(true);
-                tablaClientes.mostrarClientes();
-            }
-            if (menu == 4){
-                //mostrar clientes
-                System.out.println("Desordenado:");
-                tablaClientes.mostrarClientes();
-                System.out.println("\n\nOrdenado:");
-                tablaClientes.ordenarPorNombre(false);
-                tablaClientes.mostrarClientes();
-            }
+
+
 
         }
 
