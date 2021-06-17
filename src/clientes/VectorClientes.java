@@ -41,10 +41,27 @@ public class VectorClientes {
         System.out.println("\n\n");
     }
 
-    // Ordenamiento
-    public void ordenarPorNombre(boolean ascendente) {
-        ManejadorData.ordenarNombre(clientes, (siguienteCodigo-1),ascendente);
+    //Ordenamiento
+    public void ordenarPorNombre(boolean ascendente){
+        boolean cambio = true;
 
+        for (int i = 1; i < (siguienteCodigo-1); i++) {
+            for (int j = 0; j < (siguienteCodigo-1-i); j++) {
+                //  String.compareTo(String)
+                //   [-oo , + oo]
+                if (ascendente)
+                    cambio= (clientes[j].getNombre().compareTo(clientes[j+1].getNombre()) > 0 );
+                else 
+                    cambio= (clientes[j].getNombre().compareTo(clientes[j+1].getNombre()) < 0 );
+
+                if(cambio ){
+                    //clientes i va antes que clientes j <0 descendente
+                    Cliente aux = clientes[j];
+                    clientes[j] = clientes[j+1];
+                    clientes[j+1]= aux;
+                }
+            }
+        }
     }
 
     public void modificarCliente() {
@@ -64,11 +81,11 @@ public class VectorClientes {
         Cliente selec = null;
         int pos = 0;
 
-        for (int i = 0; i < siguienteCodigo; i++) {
+        for (int i = 0; i < ManejadorData.getDatosNetos(clientes); i++) {
             selec = clientes[i];
             pos = i;
 
-            for (int j = i+1; j < siguienteCodigo; j++) {
+            for (int j = i+1; j < ManejadorData.getDatosNetos(clientes); j++) {
                 
                 if (ascendente) {
                     cambio = selec.getId() > clientes[j].getId();

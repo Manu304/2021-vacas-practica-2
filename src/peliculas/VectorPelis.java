@@ -108,7 +108,7 @@ public class VectorPelis {
     }
 
     public void ordenPeliNombre(boolean ascendente) {
-        ManejadorData.ordenarNombre(peliculas, (indicePeli - 1), ascendente);
+        ManejadorData.ordenarNombre(peliculas, ascendente);
     }
 
     public void ordenPeliID(boolean ascendente){
@@ -116,11 +116,11 @@ public class VectorPelis {
         Pelicula selec = null;
         int pos = 0;
 
-        for (int i = 0; i < indicePeli; i++) {
+        for (int i = 0; i < ManejadorData.getDatosNetos(peliculas); i++) {
             selec = peliculas[i];
             pos = i;
 
-            for (int j = i+1; j < indicePeli; j++) {
+            for (int j = i+1; j < ManejadorData.getDatosNetos(peliculas); j++) {
                 
                 if (ascendente) {
                     cambio = selec.getId() > peliculas[j].getId();

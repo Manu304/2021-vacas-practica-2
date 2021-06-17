@@ -126,7 +126,7 @@ public class Principal {
             switch (opcion) {
                 case 1 -> {
                     System.out.println("\n-----------ORDEN ASCENDENTE (A-Z)------------\n");
-                    if (esPeli) {
+                    if (esPeli == true) {
                         tablaPelis.ordenPeliNombre(true);
                         tablaPelis.mostrarPelis();
                     } else {
@@ -136,7 +136,7 @@ public class Principal {
                 }
                 case 2 -> {
                     System.out.println("\n----------ORDEN DESCENDENTE (Z-A)------------\n");
-                    if (esPeli) {
+                    if (esPeli == true) {
                         tablaPelis.ordenPeliNombre(false);
                         tablaPelis.mostrarPelis();
                     } else {
@@ -146,7 +146,7 @@ public class Principal {
                 }
                 case 3 -> {
                     System.out.println("\n-----------ORDEN ASCENDENTE (1-N)------------\n");
-                    if (esPeli) {
+                    if (esPeli == true) {
                         tablaPelis.ordenPeliID(true);
                         tablaPelis.mostrarPelis();
                     }else{
@@ -157,7 +157,7 @@ public class Principal {
                 }
                 case 4 -> {
                     System.out.println("\n-----------ORDEN DESCENDENTE (N-1)------------\n");
-                    if (esPeli) {
+                    if (esPeli == true) {
                         tablaPelis.ordenPeliID(false);
                         tablaPelis.mostrarPelis();
                     }else{

@@ -7,16 +7,16 @@ public class ManejadorData {
 
     }
 
-    public static Object[] ordenarNombre(Object[] datos, int totalData, boolean ascendente){
+    public static Object[] ordenarNombre(Object[] datos, boolean ascendente){
         boolean cambio = true;
         Object selec = null;
         int pos = 0;
 
-        for (int i = 0; i < totalData; i++) {
+        for (int i = 0; i < getDatosNetos(datos); i++) {
             selec = datos[i];
             pos = i;
 
-            for (int j = i+1; j < totalData; j++) {
+            for (int j = i+1; j < getDatosNetos(datos); j++) {
                 
                 if (ascendente) {
                     cambio = selec.toString().compareTo(datos[j].toString()) > 0;
@@ -57,6 +57,14 @@ public class ManejadorData {
 
         }
         return arreglo;
+    }
+
+    public static int getDatosNetos(Object[] datos){
+        int contador = 0;
+        while ((contador < datos.length) && (datos[contador] != null)) {
+            contador++;
+        }
+        return contador;
     }
 
 
