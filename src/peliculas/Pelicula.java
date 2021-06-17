@@ -29,7 +29,7 @@ public class Pelicula {
         } else {
             extra = "\nPrestada: " + contador + " veces.";
         }
-        return base + extra;
+        return base + extra + "\n";
     }
 
     private String getDisponibilidad() {

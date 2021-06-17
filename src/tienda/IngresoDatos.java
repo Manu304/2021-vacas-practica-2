@@ -6,7 +6,7 @@ public class IngresoDatos {
     static Scanner scanner = new Scanner(System.in);
 
     private static void imprimirMensaje(String mensaje) {
-        System.out.print("\n" + mensaje + " : ");
+        System.out.print("\nIngrese " + mensaje + ": ");
     }
 
     public static int getEntero(String mensaje, boolean negativo) {
@@ -30,7 +30,16 @@ public class IngresoDatos {
 
     public static String getTexto(String mensaje) {
         imprimirMensaje(mensaje);
-        String res = scanner.nextLine();
+        scanner.nextLine();
+        String res = scanner.nextLine().toLowerCase().trim();
         return res;
+    }
+
+    public static int getDatosNetos(Object[] arreglo){
+        int contador = 0;
+        while ((contador < arreglo.length) && (arreglo[contador] != null)) {
+            contador++;
+        }
+        return contador;
     }
 }
