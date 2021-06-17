@@ -8,6 +8,8 @@ public class Principal {
     public static void main(String[] args){
         Principal p = new Principal();
     }
+    private String peliCliente = "1) Clientes \n2) Peliculas \n3) Volver";
+    private String noExisteOpcion = "\nUps, esa opción no existe :c\n";
 
     private VectorClientes tablaClientes = new VectorClientes();
     private VectorPelis tablaPelis = new VectorPelis();
@@ -18,35 +20,116 @@ public class Principal {
         boolean salir = false;
 
         while(!salir){
-            System.out.println("\nBienvenido a Memorabilia \n");
-            System.out.println("1) Ingreso de clientes");
-            System.out.println("2) Mostrar clientes");
-            System.out.println("3) Ordenar Clientes Ascente");
-            System.out.println("4) Ordenar Clientes Descendente");
-            System.out.println("5) Ordenar Peliculas Ascendente");
-            System.out.println("6) Ordenar peliculas descendente");
-            System.out.println("7) Ingresar Peliculas");
+            System.out.println("\n~~~~~~~~~~~~~~[Bienvenido a Memorabilia]~~~~~~~~~~~~\n");
+            System.out.println("1) Ingreso de informacion");
+            System.out.println("2) Mostrar información registrada");
+            System.out.println("3) Ordenar información registrada");
+            System.out.println("4) Modificar información");
+            System.out.println("5) SIN DEFINIR Peliculas Ascendente");
+            System.out.println("6) SIN DEFINIR peliculas descendente");
+            System.out.println("7) SIN DEFINIR  Peliculas");
             System.out.println("-1) Salir");
             System.out.println("\n");
-            menu = IngresoDatos.getEntero("la opción", true);
+            menu = IngresoDatos.getEntero("una opción", true);
 
             switch (menu) {
-                case 1 -> {tablaClientes.agregarCliente();}
-                case 2 -> {tablaClientes.mostrarClientes();}
-                case 3 -> {tablaClientes.ordenarPorNombre(true);}
+                case 1 -> {menuIngreso();}
+                case 2 -> {menuMostrarInfo();}
+                case 3 -> {menuOrdenar();}
                 case 4 -> {tablaClientes.ordenarPorNombre(false);}
                 case 5 -> {tablaPelis.ordenPeliNombre(true); tablaPelis.mostrarPelis();}
                 case 6 -> {tablaPelis.ordenPeliNombre(false); tablaPelis.mostrarPelis();}
                 case 7 -> {tablaPelis.agregarPeli();}
                 case -1 -> {salir = true; System.out.println("\nVuelva pronto :)\n");}
-                default -> {System.out.println("\nUps, esa opción no existe :c\n");}
+                default -> {System.out.println(noExisteOpcion);}
                     
             }
-
-
-
         }
+    }
 
+    public void menuIngreso(){
+        int opcion;
+        boolean salir = false;
+        while (!salir) {
+            System.out.println("\n--------------INGRESO DE INFORMACION-------------\n");
+            System.out.println(peliCliente);
+            opcion = IngresoDatos.getEntero("una opción", false);
+            switch (opcion) {
+                case 1 -> {tablaClientes.agregarCliente();}
+                case 2 -> {tablaPelis.agregarPeli();}
+                case 3 -> {salir = true;}
+                default -> {System.out.println(noExisteOpcion);}
+            }
+        }
+    }
+
+    public void menuMostrarInfo(){
+        int opcion;
+        boolean salir = false;
+        while (!salir) {
+            System.out.println("\n----------MOSTRAR INFORMACION REGISTRADA---------\n");
+            System.out.println(peliCliente);
+            opcion = IngresoDatos.getEntero("una opción", false);
+            switch (opcion) {
+                case 1 -> {tablaClientes.mostrarClientes();}
+                case 2 -> {tablaPelis.mostrarPelis();}
+                case 3 -> {salir = true;}
+                default -> {System.out.println(noExisteOpcion);}
+            }
+        }
+    }
+
+    public void menuOrdenar(){
+        int opcion;
+        boolean salir = false;
+        while (!salir) {
+            System.out.println("\n----------ORDENAR INFORMACION REGISTRADA---------\n");
+            System.out.println(peliCliente);
+            opcion = IngresoDatos.getEntero("una opción", false);
+            switch (opcion) {
+                case 1 -> {menuOpcionOrden(false);}
+                case 2 -> {menuOpcionOrden(true);;}
+                case 3 -> {salir = true;}
+                default -> {System.out.println(noExisteOpcion);}
+            }
+        }
+    }
+
+    public void menuOpcionOrden(boolean esPeli){
+        int opcion;
+        boolean salir = false;
+        String tituloTipo = "CLIENTES";
+        if (esPeli) {
+            tituloTipo = "PELICULAS";
+        }
+        while (!salir) {
+            System.out.println("\n---------ORDENANDO " + tituloTipo + "-----------\n");
+            System.out.println("\n----------TIPO DE ORDENAMIENTO---------\n");
+            System.out.println("1) Ascendente por nombre \n2) Descendente por nombre \n3) Ascendente por ID \n4) Descendente por ID \n5) Volver");
+            opcion = IngresoDatos.getEntero("una opción", false);
+            switch (opcion) {
+                case 1 -> {
+                    if (esPeli) {
+                        tablaPelis.ordenPeliNombre(true);
+                    } else {
+                        tablaClientes.ordenarPorNombre(true);
+                    }
+                    System.out.println("\n-----------ORDEN ASCENDENTE (A-Z)------------\n");
+                    tablaClientes.mostrarClientes();
+                }
+                case 2 -> {
+                    if (esPeli) {
+                        tablaPelis.ordenPeliNombre(false);
+                    } else {
+                        tablaClientes.ordenarPorNombre(false);
+                    }
+                    System.out.println("\n----------ORDEN DESCENDENTE (Z-A)------------\n");
+                    tablaClientes.mostrarClientes();
+                }
+                case 5 -> {salir = true;}
+                default -> {System.out.println(noExisteOpcion);}
+            }
+        }
     }
 
     

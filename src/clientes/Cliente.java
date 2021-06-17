@@ -1,5 +1,7 @@
 package src.clientes;
 
+import src.manejo_datos.ManejadorData;
+
 /**
  * Cliente
  */
@@ -8,45 +10,43 @@ public class Cliente {
     private String nombre;
     private int telefono;
 
-    public Cliente(int id, String nombre, int telefono){
+    public Cliente(int id, String nombre, int telefono) {
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
     }
 
-    public Cliente(int id, String nombre){
+    public Cliente(int id, String nombre) {
         this(id, nombre, 0);
     }
 
-    //getters y setters
+    // getters y setters
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
-    public int getTelefono(){
+    public int getTelefono() {
         return telefono;
     }
 
-    public String getNombre(){
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre){
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public void setTelefono(int telefono){
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
+    // fin getters y setters
 
-
-    //fin getters y setters
-
-    public String getInformacion(){
-        String resultado = "Id: "+id+" Nombre del cliente: " + nombre;
+    public String getInformacion() {
+        String resultado = "Id: " + id + " Nombre: " + ManejadorData.llenarEspacio(nombre) + " Telefono: " + telefono;
         return resultado;
     }
-    
+
 }

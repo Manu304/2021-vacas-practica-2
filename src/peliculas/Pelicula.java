@@ -1,6 +1,7 @@
 package src.peliculas;
 
 import src.categorias.Categoria;
+import src.manejo_datos.ManejadorData;
 
 public class Pelicula {
     int id, anio, contador;
@@ -22,12 +23,13 @@ public class Pelicula {
     }
 
     public String getInformacion(boolean contador) {
-        String base = "ID: " + id + "\nNombre: " + nombre;
+        String base = "ID: " + id + " Nombre: " + ManejadorData.llenarEspacio(nombre);
         String extra;
         if (!contador) {
-            extra = "\nAño: " + anio + "\nCategoria: " + categoria + "\nEstado: " + getDisponibilidad();
+            extra = " Año: " + anio + "      Categoria: " + ManejadorData.llenarEspacio(categoria.getNombre())
+                    + " Estado: " + getDisponibilidad();
         } else {
-            extra = "\nPrestada: " + contador + " veces.";
+            extra = " Prestada: " + contador + " veces.";
         }
         return base + extra + "\n";
     }
@@ -81,4 +83,10 @@ public class Pelicula {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
 }

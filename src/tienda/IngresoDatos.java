@@ -34,12 +34,4 @@ public class IngresoDatos {
         String res = scanner.nextLine().toLowerCase().trim();
         return res;
     }
-
-    public static int getDatosNetos(Object[] arreglo){
-        int contador = 0;
-        while ((contador < arreglo.length) && (arreglo[contador] != null)) {
-            contador++;
-        }
-        return contador;
-    }
 }

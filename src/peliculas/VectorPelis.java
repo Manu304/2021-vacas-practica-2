@@ -1,6 +1,7 @@
 package src.peliculas;
 
 import src.categorias.Categoria;
+import src.manejo_datos.ManejadorData;
 import src.tienda.IngresoDatos;
 
 public class VectorPelis {
@@ -11,6 +12,7 @@ public class VectorPelis {
     private int indicePeli;
     public VectorPelis(){
         indicePeli = 1;
+        indiceCategoria = 0;
 
     }
 
@@ -35,9 +37,9 @@ public class VectorPelis {
     }
 
     public void mostrarPelis(){
-        System.out.println("\n------PELICULAS EN MEMORABILIA------\n");
+        System.out.println("\n----------PELICULAS EN MEMORABILIA-----------\n");
         for (int i = 0; i < indicePeli - 1; i++) {
-            System.out.println(peliculas[i].getInformacion(false));
+            System.out.println("(" + (i+1)+ ") " + peliculas[i].getInformacion(false));
         }
     }
 
@@ -56,11 +58,46 @@ public class VectorPelis {
         }
         
     }
+    public void modificarPeli() {
+        int indice;
+        mostrarPelis();
+        do {
+            indice = IngresoDatos.getEntero("la pelicula que desea modificar", false);
+            if (indice > (indicePeli-1)) {
+                System.out.println("\nERROR. Esa pelicula no se encuentra entre las opciones.\n");
+            }
+        } while (indice > (indicePeli-1));
+        modificarPeli(indice); 
+    }
+
+    public void modificarPeli(int indice){
+        String nuevoNombre = IngresoDatos.getTexto("el nombre correcto de la pelicula");
+        int nuevoAnio = IngresoDatos.getEntero("el año correcto de estreno de la pelicula", false);
+        String nuevaCategoria = IngresoDatos.getTexto("la categoria correcta de la pelicula");
+        modificarCategoria(nuevaCategoria);
+        int indiceCategoria = getIndiceDato(nuevaCategoria);
+        peliculas[indice].setNombre(nuevoNombre);
+        peliculas[indice].setAnio(nuevoAnio);
+        peliculas[indice].setCategoria(categorias[indiceCategoria]);
+
+    }
+
+    public void modificarCategoria(String nuevaCategoria){
+        int indiceCategoria = getIndiceDato(nuevaCategoria);
+        if (categorias[indiceCategoria].getContador() > 1) {
+            categorias[indiceCategoria].decrementarContador();
+        } else {
+            categorias[indiceCategoria] = null;
+            ManejadorData.eliminarVacios(categorias);
+            indiceCategoria--;
+            agregarCategoria(nuevaCategoria);
+        }
+    }
 
     private boolean buscarCategoria(String nombre){
         boolean correcto = false;
         if (categorias[0] != null) {
-            for (int i = 0; i < IngresoDatos.getDatosNetos(categorias); i++) {
+            for (int i = 0; i < indiceCategoria; i++) {
                 if (categorias[i].getNombre().equals(nombre)) {
                     correcto = true;
                 }
@@ -70,37 +107,13 @@ public class VectorPelis {
     }
 
     public void ordenPeliNombre(boolean ascendente){
-        boolean cambio = true;
-        Pelicula selec = null;
-        int pos = 0;
-
-        for (int i = 0; i < IngresoDatos.getDatosNetos(peliculas); i++) {
-            selec = peliculas[i];
-            pos = i;
-
-            for (int j = i+1; j < IngresoDatos.getDatosNetos(peliculas); j++) {
-                
-                if (ascendente) {
-                    cambio = selec.getNombre().compareTo(peliculas[j].getNombre()) > 0;
-                    
-                }else{
-                    cambio = selec.getNombre().compareTo(peliculas[j].getNombre()) < 0;
-                }
-                if (cambio){
-                    selec = peliculas[j];
-                    pos = j;
-                }
-
-            }
-            peliculas[pos] = peliculas[i];
-            peliculas[i] = selec;
-        }
+        ManejadorData.ordenarNombre(peliculas, (indicePeli-1) ,ascendente);
     }
 
     private int getIndiceDato(String nombre){
         int indice = 0;
         if (categorias[0] != null) {
-            while ((indice < IngresoDatos.getDatosNetos(categorias)) && !(categorias[indice].getNombre().equals(nombre))) {
+            while ((indice < indiceCategoria) && !(categorias[indice].getNombre().equals(nombre))) {
                 indice++;
             }
         }
